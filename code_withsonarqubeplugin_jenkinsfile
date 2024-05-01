@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+	
+	tools {
+	jdk 'Java 8'
+	
+	}
+
+    stages {
+	
+        stage('clone from github') {
+            
+			steps {
+			
+			echo 'cloning from github'
+                git credentialsId: 'gameoflife', url: 'https://github.com/lavs1055/lav_game-of-life.git'
+            }
+        }
+        stage('checking with sonar') {
+            
+			steps {
+			
+			echo 'checking quality of code with sonarqube'
+                sh '''java -version
+               mvn clean compile
+               mvn sonar:sonar'''
+            }
+        }
+		stage('build with maven') {
+		
+            steps {
+			echo 'generating artifact using maven'
+                sh 'mvn clean install'
+				}
+            }
+			stage('deploying to tomcat') {
+			
+            steps {
+			echo 'deploying artifact into tomcat'
+			deploy adapters: [tomcat9(credentialsId: 'sonar1', path: '', url: 'http://35.153.33.69:8081/')], contextPath: 'game_of_life_using_sonarqubeplugin', onFailure: false, war: '**/*.war'
+              
+            }
+        }
+    }
+}  
