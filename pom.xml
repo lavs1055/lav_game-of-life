@@ -19,17 +19,17 @@
         <thucydides.version>1.8.4</thucydides.version>
         <jelastic.context>gameoflife</jelastic.context>
         <jelastic.environment>wakaleo</jelastic.environment>
-        <sonar.host.url>http://54.87.178.61:9000</sonar.host.url>
+        <sonar.host.url>http://http://35.174.185.53:9000/</sonar.host.url>
     </properties>
     <distributionManagement>
 		 <snapshotRepository>
 		    <id>NexusRepo</id>
-		    <url>http://34.229.72.32:8081/repository/Repo_for_snapshot/</url>
+		    <url>http://52.201.220.214:8081/repository/Repo_for_snapshot/</url>
 		 </snapshotRepository>
 		
 		<repository>
 		    <id>NexusRepo</id>
-		    <url>http://34.229.72.32:8081/repository/Repo_for_snapshot/</url>
+		    <url>http://52.201.220.214:8081/repository/Repo_for_release/</url>
 		</repository>
   	</distributionManagement>
 
